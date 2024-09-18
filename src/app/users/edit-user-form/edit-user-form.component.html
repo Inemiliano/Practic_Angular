@@ -1,31 +1,54 @@
-<div id="edit_form" class="new-form-container">
-    <form action="">
-        <div class="new-form-group">
-            <label for="id">ID</label>
-            <input type="text" name="id" id="id" disabled [value]="user.id" class="new-input-field">
-        </div>
-        <div class="new-form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" [(ngModel)]="user.name" class="new-input-field">
-        </div>
-        <div class="new-form-group">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" [(ngModel)]="user.username" class="new-input-field">
-        </div>
-        <div class="new-form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" [(ngModel)]="user.email" class="new-input-field">
-        </div>
-        <div class="new-form-group">
-            <label for="phone">Phone</label>
-            <input type="text" name="phone" id="phone" [(ngModel)]="user.phone" class="new-input-field">
-        </div>
-        <div class="new-form-group">
-            <label for="website">Website</label>
-            <input type="text" name="website" id="website" [(ngModel)]="user.website" class="new-input-field">
-        </div>
+<div class="new-form-container">
+    <h2>Agregar Usuario</h2>
+    <form #usuarioForm="ngForm" (ngSubmit)="agregarUsuario()">
+      <div class="new-form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" [(ngModel)]="nuevoUsuario.name" class="new-input-field" required />
+      </div>
+  
+      <div class="new-form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" [(ngModel)]="nuevoUsuario.username" class="new-input-field" required />
+      </div>
+  
+      <div class="new-form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" [(ngModel)]="nuevoUsuario.email" class="new-input-field" required />
+      </div>
+  
+      <div class="new-form-group">
+        <label for="phone">Teléfono</label>
+        <input type="tel" name="phone" [(ngModel)]="nuevoUsuario.phone" class="new-input-field" />
+      </div>
+  
+      <div class="new-form-group">
+        <label for="website">Sitio Web</label>
+        <input type="url" name="website" [(ngModel)]="nuevoUsuario.website" class="new-input-field" />
+      </div>
+  
+      <button type="submit" class="new-btn-submit" [disabled]="disabled">Agregar Usuario</button>
     </form>
-
-    <button (click)="enviar()" class="new-btn-submit">Activate</button>
-</div>
-
+  
+    <h3>Lista de Usuarios</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Teléfono</th>
+          <th>Sitio Web</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usuarios">
+          <td>{{ user.name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.website }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
